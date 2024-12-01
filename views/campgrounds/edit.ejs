@@ -1,0 +1,72 @@
+<% layout('layout/boilerplate.ejs') %>
+    <div class="row">
+        <h1 class="text-center">Update Your Campground</h1>
+        <div class="col-md-6 offset-md-3">
+
+            <form action="/campgrounds/<%= data._id %>?_method=PUT" method="post" novalidate class="form-validate"
+                enctype="multipart/form-data">
+
+                <div class="mb-3">
+                    <label for="t" class="form-label">Title: </label>
+                    <input type="text" placeholder="title of camp" id="t" name="title" value="<%= data.title %>"
+                        class="form-control" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="l" class="form-label">Location: </label>
+                    <input type="text" placeholder="location of camp" id="l" name="location"
+                        value="<%= data.location %>" class="form-control" required>
+                    <small class="form-text text-muted">You can upload up to 7 images only.</small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="img" class="form-label">Add more image(s)</label>
+                    <input type="file" id="img" name="images" class="form-control" accept="image/*" multiple>
+                    <small class="form-text text-muted">You can upload up to 7 images only.</small>
+                </div>
+
+                <div class="mb-3">
+                    <% data.images.forEach((img, i)=>{ %>
+                        <img src="<%= img.thumbnail %>" alt="<%= img.filename %>" class="img-thumbnail">
+                        <div class="form-check-inline">
+                            <input type="checkbox" id="<%= i %>" name="deleteImages[]" value="<%= img.filename %>">
+                            <label for="<%= i %>">Delete</label>
+                        </div>
+                        <% }) %>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="p" class="form-label">Price: </label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1">₹</span>
+                        <input type="text" id="p" class="form-control" placeholder="e.g., 5000 (in Rupees)"
+                            aria-label="Username" name="price" aria-describedby="basic-addon1" value="<%= data.price %>"
+                            required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="mb-3">
+                    <label for="d" class="form-label">Description: </label>
+                    <textarea type="text"
+                        placeholder="e.g., A serene camp nestled in the mountains with a breathtaking view." id="d"
+                        name="description" class="form-control" required><%= data.description %></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-info">Update Campground</button>
+                </div>
+            </form>
+            <a href="http://localhost:3000/campgrounds/<%= data._id %>">Back To Campground</a>
+        </div>
+    </div>

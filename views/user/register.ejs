@@ -1,0 +1,75 @@
+<% layout('layout/boilerplate.ejs') %>
+
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+            <div class="card shadow mb-4">
+                <img crossorigin="anonymous" src="https://res.cloudinary.com/dnkqy2kkr/image/upload/v1732861561/sign_up_in_cnzyrj.avif"
+                    alt="" class="card-img-top" />
+                <div class="card-body">
+                    <h5 class="card-title">Signup</h5>
+                    <form action="/register" method="POST" class="form-validate" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label" for="username">Username</label>
+                            <input class="form-control" type="text" id="username" name="username" autofocus
+                                required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="email">E-mail</label>
+                            <input class="form-control" type="email" id="email" name="email" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="password">Password</label>
+                            <input class="form-control" type="password" id="password" name="password" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <button class="btn btn-primary w-100">Sign Up</button>
+                        <p class="mt-3">Already have an account? <a href="/login">Log in here</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- <form action="/register" method="post" class="form-validate" novalidate>
+    <div class="mb-3">
+        <label for="uname" class="form-label">Username</label>
+        <input type="text" placeholder="Choose a username" id="uname" name="username"
+            class="form-control" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">E-mail Address</label>
+        <input type="email" placeholder="Enter your email" id="email" name="email"
+            class="form-control" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="pass" class="form-label">Password</label>
+        <input type="password" placeholder="Create a strong password" id="pass" name="password"
+            class="form-control" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+    <button class="btn btn-primary">Sign Up</button>
+    <p class="mt-3">Already have an account? <a href="/login">Log in here</a></p>
+</form> -->

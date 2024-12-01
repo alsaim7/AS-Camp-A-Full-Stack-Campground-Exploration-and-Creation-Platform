@@ -1,0 +1,121 @@
+<% layout('layout/boilerplate.ejs') %>
+
+    <div id="map" style="width: 100%; height: 300px;" class="mb-3"></div>
+
+    <h1>All Campgrounds</h1>
+    <% for (let c of camp) {%>
+        <div class="card mb-3" style="height: 18rem">
+            <div class="row">
+                <div class="col-md-4">
+                    <% if(c.images.length){ %>
+                        <img crossorigin="anonymous" src='<%= c.images[0].url %>' alt='<%= c.title %>' class="img-fluid">
+                        <% } else { %>
+                            <img crossorigin="anonymous" class="img-fluid"
+                                src="https://res.cloudinary.com/dnkqy2kkr/image/upload/v1732358412/no-image_zedozj.jpg"
+                                alt="No image">
+                            <% } %>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%= c.title %>
+                        </h5>
+                        <p class="card-text">
+                            <%= c.description %>
+                        </p>
+                        <p class="card-text">
+                            <small class="text-muted">
+                                <%= c.location %>
+                            </small>
+                        </p>
+                        <a href="http://localhost:3000/campgrounds/<%= c._id %>" class="btn btn-primary">View <%=
+                                c.title %></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } %>
+
+
+            <% layout('layout/boilerplate.ejs') %>
+
+                <div id="map" style="width: 100%; height: 300px;" class="mb-3"></div>
+
+                <h1>List of Campgrounds</h1>
+                <% if (camp.length) { %>
+                    <% for (let c of camp) {%>
+                        <div class="card mb-3" style="height: 18rem">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <% if (c.images.length) { %>
+                                        <img src="<%= c.images[0].url %>" alt="<%= c.title %>" class="img-fluid"
+                                            loading="lazy">
+                                        <% } else { %>
+                                            <img class="img-fluid"
+                                                src="https://res.cloudinary.com/dnkqy2kkr/image/upload/v1732358412/no-image_zedozj.jpg"
+                                                alt="No image" loading="lazy">
+                                            <% } %>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <%= c.title %>
+                                        </h5>
+                                        <p class="card-text">
+                                            <%= c.description || 'No description available.' %>
+                                        </p>
+                                        <p class="card-text">
+                                            <small class="text-muted">
+                                                <%= c.location || 'Location not specified' %>
+                                            </small>
+                                        </p>
+                                        <a href="/campgrounds/<%= c._id %>" class="btn btn-primary">View <%= c.title %>
+                                                </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                            <% } else { %>
+                                <p>No campgrounds found.</p>
+                                <% } %>
+
+                                <% layout('layout/boilerplate.ejs') %>
+
+                                <div id="map" style="width: 100%; height: 300px;" class="mb-3"></div> 
+                                
+                                <h1>List of Campgrounds</h1>  
+                                <% if (camp.length) { %>
+                                    <% for (let c of camp) {%>
+                                        <div class="card mb-3" style="height: 18rem">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <% if (c.images.length) { %>
+                                                        <img src="<%= c.images[0].url %>" alt="<%= c.title %>" class="img-fluid" loading="lazy">
+                                                    <% } else { %>
+                                                        <img class="img-fluid" src="https://res.cloudinary.com/dnkqy2kkr/image/upload/v1732358412/no-image_zedozj.jpg" alt="No image" loading="lazy">
+                                                    <% } %>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title"><%= c.title %></h5>
+                                                        <p class="card-text"><%= c.description || 'No description available.' %></p>
+                                                        <p class="card-text">
+                                                            <small class="text-muted"><%= c.location || 'Location not specified' %></small>
+                                                        </p>
+                                                        <a href="/campgrounds/<%= c._id %>" class="btn btn-primary">View <%= c.title %></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <% } %>
+                                <% } else { %>
+                                    <p>No campgrounds found.</p>
+                                <% } %>
+                                
+                                <script>
+                                    const maptilerApiKeyAgain = '<%- process.env.maptilerApiKey %>';
+                                    const campgrounds = { features: <%- JSON.stringify(camp) %> };
+                                </script>
+                                
+                                <script src="/javascripts/clusterMap.js"></script>

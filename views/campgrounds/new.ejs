@@ -1,0 +1,67 @@
+<% layout('layout/boilerplate.ejs') %>
+    <div class="row">
+        <h1 class="text-center">Add New Campground</h1>
+        <div class="col-md-6 offset-md-3">
+            <form action="/campgrounds" method="post" class="form-validate" novalidate enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="t" class="form-label">Title</label>
+                    <input type="text" placeholder="e.g., Mountain View Camp" id="t" name="title" class="form-control"
+                        required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="l" class="form-label">Location </label>
+                    <input type="text" placeholder="e.g., Manali, Himachal Pradesh" id="l" name="location"
+                        class="form-control" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="img" class="form-label">Choose Image(s)</label>
+                    <input type="file" id="img" name="images" class="form-control" accept="image/*" onchange="
+                    if (this.files.length > 7) { 
+                        alert('You cannot upload more than 7 images.'); 
+                        this.value = ''; 
+                        }" multiple>
+                    <small class="form-text text-muted">You can upload up to 7 images only.</small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="p" class="form-label">Price </label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1">₹</span>
+                        <input type="text" id="p" class="form-control" placeholder="e.g., 5000 (in Rupees)"
+                            aria-label="Username" name="price" aria-describedby="basic-addon1" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="d" class="form-label">Description </label>
+                    <textarea type="text"
+                        placeholder="e.g., A serene camp nestled in the mountains with a breathtaking view." id="d"
+                        name="description" class="form-control" required></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+
+
+                <div class="mb-3">
+                    <button class="btn btn-success">Add Campground</button>
+                </div>
+
+            </form>
+            <a href="/campgrounds">Back To Campgrounds</a>
+        </div>
+    </div>
