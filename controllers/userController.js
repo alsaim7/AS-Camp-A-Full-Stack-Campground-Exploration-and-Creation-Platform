@@ -8,12 +8,22 @@ module.exports.renderRegisterForm = (req, res) => {
 module.exports.registerUser = async (req, res) => {
     try {
         const registerFormData = req.body
+
+        //confirm password back end validation
+        if(registerFormData.password!==registerFormData.confirmPassword){
+            req.flash('error', 'Password do not match!')
+            res.redirect('/register')
+            return
+        }
+        //confirm password back end validation
+
+
         const user = new User({
             username: registerFormData.username,
             email: registerFormData.email
         })
         const registeredUser = await User.register(user, registerFormData.password)
-        req.login(registeredUser, (err) => {
+        req.login(registeredUser, (err) => { //req.login is a function by passport 
             if (err) {
                 return next(err)
             }
@@ -21,8 +31,22 @@ module.exports.registerUser = async (req, res) => {
             res.redirect('/campgrounds')
         })
     } catch (e) {
-        req.flash('error', e.message)
-        res.redirect('/register')
+        if(e.message && e.message!=='E11000 duplicate key error collection: as-camp.users index: email_1 dup key: { email: "alsaimshakeel45@gmail.com" }'){
+            req.flash('error', e.message)
+            console.log(e);
+            res.redirect('/register')
+        } 
+        else if(e.message==='E11000 duplicate key error collection: as-camp.users index: email_1 dup key: { email: "alsaimshakeel45@gmail.com" }'){
+            req.flash('error', 'This e-mail id is already registered')
+            console.log(e);
+            res.redirect('/register')
+        }
+        else {
+            req.flash('error', e)
+            console.log(e);
+            res.redirect('/register')
+        }
+        
     }
 }
 
