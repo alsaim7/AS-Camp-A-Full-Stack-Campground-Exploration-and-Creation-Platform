@@ -18,7 +18,7 @@ const campgroundsRouter = express.Router()
 
 
 campgroundsRouter.get('/', errorAsync(campgroundController.index))
-campgroundsRouter.get('/search', errorAsync(campgroundController.indexSearch))
+campgroundsRouter.get('/searchcamps', errorAsync(campgroundController.indexSearch))
 
 
 campgroundsRouter.get('/new', isLoggedIn, campgroundController.renderNewForm)

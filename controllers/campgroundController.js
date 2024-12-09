@@ -12,7 +12,7 @@ module.exports.index = async (req, res) => {
 }
 
 module.exports.indexSearch = async (req, res) => {
-    const searchQuery = req.query.search
+    const searchQuery = req.query.q
     const results = await Campground.find({
         title: { $regex: searchQuery, $options: 'i' }
     })
