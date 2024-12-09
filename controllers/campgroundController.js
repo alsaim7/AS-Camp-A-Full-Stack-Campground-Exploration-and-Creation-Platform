@@ -11,6 +11,15 @@ module.exports.index = async (req, res) => {
     res.render('campgrounds/index', { camp })
 }
 
+module.exports.indexSearch = async (req, res) => {
+    const searchQuery = req.query.search
+    const results = await Campground.find({
+        title: { $regex: searchQuery, $options: 'i' }
+    })
+    res.render('campgrounds/search.ejs', { results, searchQuery })
+    // res.send(results)
+}
+
 module.exports.renderNewForm = (req, res) => {
     res.render('campgrounds/new.ejs')
 }
