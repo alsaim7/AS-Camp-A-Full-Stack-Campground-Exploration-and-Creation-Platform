@@ -4,6 +4,7 @@ const { isLoggedIn, validateCampground, isAuthor } = require('../middleware')
 const campgroundController = require('../controllers/campgroundController')
 const multer = require('multer')
 const { storage } = require('../cloudinary')
+const campground = require('../models/campground')
 
 
 
@@ -18,6 +19,14 @@ const campgroundsRouter = express.Router()
 
 campgroundsRouter.get('/', errorAsync(campgroundController.index))
 
+campgroundsRouter.get('/search', errorAsync(async(req,res)=>{
+    const searchQuery= req.query.search
+    const results= await campground.find({
+        title:{$regex: searchQuery, $options: 'i'}
+    })
+    res.render('campgrounds/search.ejs', {results, searchQuery})
+    // res.send(results)
+}))
 
 campgroundsRouter.get('/new', isLoggedIn, campgroundController.renderNewForm)
 campgroundsRouter.post('/', isLoggedIn, upload.array('images', 7), validateCampground, errorAsync(campgroundController.createNewCamp))

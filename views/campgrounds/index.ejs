@@ -2,6 +2,20 @@
 
     <div id="map" style="width: 100%; height: 300px;" class="mb-3"></div>
 
+    <div class="container">
+        <div class="row">
+            <form action="/campgrounds/search" method="get" class="col-md-6 col offset-md-3">
+                <div class="input-group mb-3">
+                    <input type="text" placeholder="Search Campgrounds" name="search" class="form-control">
+                    <button class="btn btn-outline-secondary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+
     <h1>All Campgrounds</h1>
     <% for (let c of camp) {%>
         <div class="card mb-3" style="height: 18rem">
@@ -35,83 +49,7 @@
             </div>
         </div>
         <% } %>
-
-
-            <% layout('layout/boilerplate.ejs') %>
-
-                <div id="map" style="width: 100%; height: 300px;" class="mb-3"></div>
-
-                <h1>List of Campgrounds</h1>
-                <% if (camp.length) { %>
-                    <% for (let c of camp) {%>
-                        <div class="card mb-3" style="height: 18rem">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <% if (c.images.length) { %>
-                                        <img src="<%= c.images[0].url %>" alt="<%= c.title %>" class="img-fluid"
-                                            loading="lazy">
-                                        <% } else { %>
-                                            <img class="img-fluid"
-                                                src="https://res.cloudinary.com/dnkqy2kkr/image/upload/v1732358412/no-image_zedozj.jpg"
-                                                alt="No image" loading="lazy">
-                                            <% } %>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">
-                                            <%= c.title %>
-                                        </h5>
-                                        <p class="card-text">
-                                            <%= c.description || 'No description available.' %>
-                                        </p>
-                                        <p class="card-text">
-                                            <small class="text-muted">
-                                                <%= c.location || 'Location not specified' %>
-                                            </small>
-                                        </p>
-                                        <a href="/campgrounds/<%= c._id %>" class="btn btn-primary">View <%= c.title %>
-                                                </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <% } %>
-                            <% } else { %>
-                                <p>No campgrounds found.</p>
-                                <% } %>
-
-                                <% layout('layout/boilerplate.ejs') %>
-
-                                <div id="map" style="width: 100%; height: 300px;" class="mb-3"></div> 
-                                
-                                <h1>List of Campgrounds</h1>  
-                                <% if (camp.length) { %>
-                                    <% for (let c of camp) {%>
-                                        <div class="card mb-3" style="height: 18rem">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <% if (c.images.length) { %>
-                                                        <img src="<%= c.images[0].url %>" alt="<%= c.title %>" class="img-fluid" loading="lazy">
-                                                    <% } else { %>
-                                                        <img class="img-fluid" src="https://res.cloudinary.com/dnkqy2kkr/image/upload/v1732358412/no-image_zedozj.jpg" alt="No image" loading="lazy">
-                                                    <% } %>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title"><%= c.title %></h5>
-                                                        <p class="card-text"><%= c.description || 'No description available.' %></p>
-                                                        <p class="card-text">
-                                                            <small class="text-muted"><%= c.location || 'Location not specified' %></small>
-                                                        </p>
-                                                        <a href="/campgrounds/<%= c._id %>" class="btn btn-primary">View <%= c.title %></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <% } %>
-                                <% } else { %>
-                                    <p>No campgrounds found.</p>
-                                <% } %>
+    </div>
                                 
                                 <script>
                                     const maptilerApiKeyAgain = '<%- process.env.maptilerApiKey %>';

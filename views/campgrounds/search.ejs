@@ -1,0 +1,55 @@
+<% layout('layout/boilerplate.ejs') %>
+
+    <div class="container">
+        <div class="row mb-3">
+            <form action="/campgrounds/search" method="get" class="col-md-4">
+                <div class="input-group mb-3">
+                    <input type="text" placeholder="Search Campgrounds" name="search" class="form-control">
+                    <button class="btn btn-outline-secondary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-search" viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+
+        <h2>Search results for: "<%= searchQuery %>"</h2>
+        <% for (let r of results){ %>
+            <div class="card mb-3" style="height: 18rem">
+                <div class="row">
+                    <div class="col-md-4">
+                        <% if(r.images.length){ %>
+                            <img crossorigin="anonymous" src='<%= r.images[0].url %>' alt='<%= r.title %>'
+                                class="img-fluid">
+                            <% } else { %>
+                                <img crossorigin="anonymous" class="img-fluid"
+                                    src="https://res.cloudinary.com/dnkqy2kkr/image/upload/v1732358412/no-image_zedozj.jpg"
+                                    alt="No image">
+                                <% } %>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= r.title %>
+                            </h5>
+                            <p class="card-text">
+                                <%= r.description %>
+                            </p>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    <%= r.location %>
+                                </small>
+                            </p>
+                            <a href="http://localhost:3000/campgrounds/<%= r._id %>" class="btn btn-primary">View <%=
+                                    r.title %></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+
+    </div>
