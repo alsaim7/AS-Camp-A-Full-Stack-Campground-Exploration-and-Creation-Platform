@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
     }
 })
 
-userSchema.plugin(passportLocalMongoose)
+// userSchema.plugin(passportLocalMongoose)
 
 
 userSchema.plugin(passportLocalMongoose, {
@@ -35,7 +35,6 @@ userSchema.plugin(passportLocalMongoose, {
         return cb(null);
     }
 })
-
 
 
 const User = mongoose.model('User', userSchema)
