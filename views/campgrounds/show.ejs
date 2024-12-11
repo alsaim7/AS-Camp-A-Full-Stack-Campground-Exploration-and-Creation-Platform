@@ -43,9 +43,6 @@
                     <li class="list-group-item text-muted">
                         <%= data.location %>
                     </li>
-                    <li class="list-group-item text-muted">
-                        Submitted By <%= data.author.username %>
-                    </li>
                     <li class="list-group-item">₹<%= data.price %>/night</li>
                 </ul>
                 <% if(user && data.author.equals(user._id)) {%>
@@ -57,7 +54,9 @@
                     </div>
                     <% } %>
                         <div class="card-footer text-body-secondary">
-                            2 days ago
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 1 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                              </svg> <%= data.author.username %>
                         </div>
             </div>
         </div>
