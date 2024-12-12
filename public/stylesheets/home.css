@@ -5,9 +5,9 @@
 body{
     height: 100vh;
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("https://res.cloudinary.com/dnkqy2kkr/image/upload/v1732861096/homePage_iymitl.avif");
+    url("https://res.cloudinary.com/dnkqy2kkr/image/upload/v1733991777/login_1_p8sf53.jpg");
     background-size: cover;
-    background-position: center;
+    background-position: bottom;
     text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
     box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
 }

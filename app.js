@@ -27,7 +27,8 @@ const helmet = require('helmet')
 const mongoStore= require('connect-mongo')
 
 mongoose.set('strictQuery', true);
-const dbUrl = 'mongodb://127.0.0.1:27017/as-camp'
+// const dbUrl = 'mongodb://127.0.0.1:27017/as-camp'
+const dbUrl = process.env.dbUrl
 mongoose.connect(dbUrl)
   .then(() => {
     console.log('Connected to server successfully');
